@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CS321_W3D1_BookAPI.Models;
+using CS321_W3D1_BookAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CS321_W3D1_BookAPI.Controllers
@@ -10,36 +12,54 @@ namespace CS321_W3D1_BookAPI.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        // GET api/values
+        private readonly IBookService _bookService;
+
+        public BooksController(IBookService myBookService)
+        {
+            _bookService = myBookService;
+        }
+
+        // GET api/books
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_bookService.GetAll());
         }
 
-        // GET api/values/5
+        // GET api/books/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var book = _bookService.Get(id);
+            if (book == null) return NotFound();
+            return Ok(book);
         }
 
-        // POST api/values
+        // POST api/books
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Book myNewBook)
         {
+            var book = _bookService.Add(myNewBook);
+            if (book == null) return BadRequest();
+            return CreatedAtAction("Get", new { Id = myNewBook.Id }, myNewBook);
         }
 
-        // PUT api/values/5
+        // PUT api/books/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Book myUpdatedBook)
         {
+            var book = _bookService.Update(myUpdatedBook);
+            if (book == null) return BadRequest();
+            return Ok(book);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var book = _bookService.Get(id);
+            _bookService.Delete(book);
+            return NoContent();
         }
     }
 }
