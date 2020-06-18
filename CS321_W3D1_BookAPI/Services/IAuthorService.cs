@@ -8,10 +8,10 @@ namespace CS321_W3D1_BookAPI.Services
 {
     public interface IAuthorService
     {
-        //Get all books
+        //Get all authors
         IEnumerable<Author> GetAll();
 
-        //Get book by id
+        //Get author by id
         Author Get(int id);
 
         //Add a new author
