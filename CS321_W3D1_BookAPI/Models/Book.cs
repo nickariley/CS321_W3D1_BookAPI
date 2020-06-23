@@ -18,5 +18,20 @@ namespace CS321_W3D1_BookAPI.Models
 
         [Required]
         public Author Author { get; set; }
+
+        [Required]
+        public string Genre { get; set; }
+
+        [Required]
+        public string OriginalLanguage { get; set; }
+
+        [Required]
+        public int PublicationYear { get; set; }
+
+        
+        public int PublisherId { get; set; }
+
+        
+        public Publisher Publisher { get; set; }
     }
 }

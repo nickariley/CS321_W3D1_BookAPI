@@ -15,5 +15,7 @@ namespace CS321_W3D1_BookAPI.ApiModels
         public string Author { get; set; } // string containing the author's full name
 
         public int PublisherId { get; set; }
+
+        public string Publisher { get; set; }
     }
 }

@@ -22,5 +22,7 @@ namespace CS321_W3D1_BookAPI.Services
 
         //Delete a book
         void Delete(Book book);
+
+        IEnumerable<Book> GetBooksForAuthor(int id);
     }
 }

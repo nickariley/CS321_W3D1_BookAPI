@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS321_W3D1_BookAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200618013851_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20200623003811_Migrations")]
+    partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,12 +59,26 @@ namespace CS321_W3D1_BookAPI.Migrations
 
                     b.Property<int>("AuthorId");
 
+                    b.Property<string>("Genre")
+                        .IsRequired();
+
+                    b.Property<string>("OriginalLanguage")
+                        .IsRequired();
+
+                    b.Property<int>("PublicationYear");
+
+                    b.Property<string>("Publisher");
+
+                    b.Property<int>("PublisherId");
+
                     b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
 
@@ -73,19 +87,67 @@ namespace CS321_W3D1_BookAPI.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
+                            Genre = "Novel",
+                            OriginalLanguage = "English",
+                            PublicationYear = 1939,
+                            PublisherId = 1,
                             Title = "The Grapes of Wrath"
                         },
                         new
                         {
                             Id = 2,
                             AuthorId = 1,
+                            Genre = "Regional",
+                            OriginalLanguage = "English",
+                            PublicationYear = 1945,
+                            PublisherId = 1,
                             Title = "Cannery Row"
                         },
                         new
                         {
                             Id = 3,
                             AuthorId = 2,
+                            Genre = "Horror",
+                            OriginalLanguage = "English",
+                            PublicationYear = 1977,
+                            PublisherId = 2,
                             Title = "The Shining"
+                        });
+                });
+
+            modelBuilder.Entity("CS321_W3D1_BookAPI.Models.Publisher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CountryOfOrigin");
+
+                    b.Property<int>("FoundedYear");
+
+                    b.Property<string>("HeadQuartersLocation");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Publisher");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryOfOrigin = "USA",
+                            FoundedYear = 1925,
+                            HeadQuartersLocation = "NY, NY",
+                            Name = "Viking Press"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryOfOrigin = "USA",
+                            FoundedYear = 1897,
+                            HeadQuartersLocation = "NY, NY",
+                            Name = "Doubleday"
                         });
                 });
 
@@ -94,6 +156,11 @@ namespace CS321_W3D1_BookAPI.Migrations
                     b.HasOne("CS321_W3D1_BookAPI.Models.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CS321_W3D1_BookAPI.Models.Publisher")
+                        .WithMany("Books")
+                        .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
