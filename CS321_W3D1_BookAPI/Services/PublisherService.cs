@@ -31,7 +31,7 @@ namespace CS321_W3D1_BookAPI.Services
 
         public Publisher Get(int id)
         {
-            var publisher = _appDbContext.Publishers.Include(a => a.Books).FirstOrDefault(a => a.Id == id);//a.Books??
+            var publisher = _appDbContext.Publishers.Include(a => a.Books).FirstOrDefault(a => a.Id == id);
             return publisher;
         }
 

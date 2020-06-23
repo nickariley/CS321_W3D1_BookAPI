@@ -12,7 +12,11 @@ namespace CS321_W3D1_BookAPI.ApiModels
         {
             return new PublisherModel
             {
-                // TODO: map Publisher properties to corresponding PublisherModel properties
+                Id = publisher.Id,
+                Name = publisher.Name,
+                FoundedYear = publisher.FoundedYear,
+                CountryOfOrigin = publisher.CountryOfOrigin,
+                HeadQuartersLocation = publisher.HeadQuartersLocation
             };
         }
 
@@ -20,7 +24,11 @@ namespace CS321_W3D1_BookAPI.ApiModels
         {
             return new Publisher
             {
-                // TODO: map PublisherModel properties to corresponding Publisher props
+                Id = publisherModel.Id,
+                Name = publisherModel.Name,
+                FoundedYear = publisherModel.FoundedYear,
+                CountryOfOrigin = publisherModel.CountryOfOrigin,
+                HeadQuartersLocation = publisherModel.HeadQuartersLocation
             };
         }
 

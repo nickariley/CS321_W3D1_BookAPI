@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS321_W3D1_BookAPI.Services
 {
-    interface IPublisherService
+    public interface IPublisherService
     {
         //Get all publishers
         IEnumerable<Publisher> GetAll();
