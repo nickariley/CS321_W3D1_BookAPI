@@ -65,8 +65,6 @@ namespace CS321_W3D1_BookAPI.Migrations
 
                     b.Property<int>("PublicationYear");
 
-                    b.Property<string>("Publisher");
-
                     b.Property<int>("PublisherId");
 
                     b.Property<string>("Title")
@@ -128,7 +126,7 @@ namespace CS321_W3D1_BookAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publisher");
+                    b.ToTable("Publishers");
 
                     b.HasData(
                         new
@@ -156,7 +154,7 @@ namespace CS321_W3D1_BookAPI.Migrations
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CS321_W3D1_BookAPI.Models.Publisher")
+                    b.HasOne("CS321_W3D1_BookAPI.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade);

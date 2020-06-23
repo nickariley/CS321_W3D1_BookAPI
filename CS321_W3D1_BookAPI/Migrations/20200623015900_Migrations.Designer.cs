@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS321_W3D1_BookAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200623003811_Migrations")]
+    [Migration("20200623015900_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,8 +66,6 @@ namespace CS321_W3D1_BookAPI.Migrations
                         .IsRequired();
 
                     b.Property<int>("PublicationYear");
-
-                    b.Property<string>("Publisher");
 
                     b.Property<int>("PublisherId");
 
@@ -130,7 +128,7 @@ namespace CS321_W3D1_BookAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publisher");
+                    b.ToTable("Publishers");
 
                     b.HasData(
                         new
@@ -158,7 +156,7 @@ namespace CS321_W3D1_BookAPI.Migrations
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CS321_W3D1_BookAPI.Models.Publisher")
+                    b.HasOne("CS321_W3D1_BookAPI.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade);
