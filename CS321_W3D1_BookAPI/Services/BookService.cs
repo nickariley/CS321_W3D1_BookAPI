@@ -44,7 +44,7 @@ namespace CS321_W3D1_BookAPI.Services
 
         public IEnumerable<Book> GetAll()
         {
-            return _appDbContext.Books.Include(b => b.Author);
+            return _appDbContext.Books.Include(b => b.Author).Include(b => b.Publisher);
         }
 
         public Book Update(Book updatedBook)

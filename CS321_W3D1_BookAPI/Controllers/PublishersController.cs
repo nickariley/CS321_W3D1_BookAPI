@@ -6,7 +6,7 @@ using CS321_W3D1_BookAPI.ApiModels;
 using CS321_W3D1_BookAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace CS321_W3D1_BookAPI.Controllers
 {

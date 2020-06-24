@@ -12,6 +12,11 @@ namespace CS321_W3D1_BookAPI.Services
     {
         private readonly AppDbContext _appDbContext;
 
+        public PublisherService(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+
         public Publisher Add(Publisher newPublisher)
         {
             _appDbContext.Publishers.Add(newPublisher);
